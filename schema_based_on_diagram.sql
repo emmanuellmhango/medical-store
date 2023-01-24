@@ -12,9 +12,8 @@ CREATE TABLE patients(
 CREATE TABLE medical_histories (
   id SERIAL PRIMARY KEY,
   admitted_at TIMESTAMP,
-  patient_id INT,
-  status VARCHAR(255),
-  FOREIGN KEY patient_id REFERENCES patients(id)
+  patient_id INT REFERENCES patients(id),
+  status VARCHAR(255)
 );
 
 -- CREATE TABLE TREATMENTS
@@ -27,16 +26,6 @@ CREATE TABLE treatments(
 -- CREATE TABLE MEDICAL_TREATMENTS
 CREATE TABLE medical_histories_treatments(
   medical_history_id INT REFERENCES medical_histories(id),
-  treatment_id INT REFERENCES treatments(id),
-);
-
--- CREATE TABLE INVOICE-ITEMS
-CREATE TABLE invoice_items (
-  id SERIAL PRIMARY KEY,
-  unit_price DECIMAL,
-  quantity INT,
-  total_price DECIMAL,
-  invoice_id INT REFERENCES invoices(id),
   treatment_id INT REFERENCES treatments(id)
 );
 
@@ -47,6 +36,16 @@ CREATE TABLE invoices (
   generated_at TIMESTAMP,
   payed_at TIMESTAMP,
   medical_history_id INT REFERENCES medical_histories(id)
+);
+
+-- CREATE TABLE INVOICE-ITEMS
+CREATE TABLE invoice_items (
+  id SERIAL PRIMARY KEY,
+  unit_price DECIMAL,
+  quantity INT,
+  total_price DECIMAL,
+  invoice_id INT REFERENCES invoices(id),
+  treatment_id INT REFERENCES treatments(id)
 );
 
 -- CREATE INDEX FOR MEDICAL_HISTORIES-PATIENTS

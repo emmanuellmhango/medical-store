@@ -30,4 +30,22 @@ CREATE TABLE medical_histories_treatments(
   treatments_id INT REFERENCES treatments(id),
 );
 
--- 
+-- CREATE TABLE INVOICE ITEMS
+CREATE TABLE invoice_items (
+  id SERIAL PRIMARY KEY,
+  unit_price DECIMAL,
+  quantity INT,
+  total_price DECIMAL,
+  invoice_id INT REFERENCES invoices(id),
+  treatment_id INT REFERENCES treatments(id)
+);
+
+-- CREATE TABLE INVOICES
+CREATE TABLE invoices (
+  id SERIAL PRIMARY KEY,
+  total_amount DECIMAL,
+  generated_at TIMESTAMP,
+  payed_at TIMESTAMP,
+  medical_history_id INT REFERENCES medical_histories(id)
+);
+

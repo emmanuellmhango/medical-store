@@ -26,11 +26,11 @@ CREATE TABLE treatments(
 
 -- CREATE TABLE MEDICAL_TREATMENTS
 CREATE TABLE medical_histories_treatments(
-  medical_histories_id INT REFERENCES medical_histories(id),
-  treatments_id INT REFERENCES treatments(id),
+  medical_history_id INT REFERENCES medical_histories(id),
+  treatment_id INT REFERENCES treatments(id),
 );
 
--- CREATE TABLE INVOICE ITEMS
+-- CREATE TABLE INVOICE-ITEMS
 CREATE TABLE invoice_items (
   id SERIAL PRIMARY KEY,
   unit_price DECIMAL,
@@ -49,11 +49,20 @@ CREATE TABLE invoices (
   medical_history_id INT REFERENCES medical_histories(id)
 );
 
--- CREATE INDEX FOR MEDICAL HISTORIES
+-- CREATE INDEX FOR MEDICAL_HISTORIES-PATIENTS
 CREATE INDEX medical_histories_patients_id_asc ON medical_histories(patient_id ASC);
 
--- CREATE INDEX FOR MEDICAL HISTORIES INVOICES
+-- CREATE INDEX FOR MEDICAL_HISTORIES-INVOICES
 CREATE INDEX invoices_medical_history_id_asc ON invoices(medical_history_id ASC);
 
--- CREATE INDEX FOR INVOICE ITEMS INVOICES
+-- CREATE INDEX FOR INVOICE-ITEMS-INVOICES
 CREATE INDEX invoice_items_invoice_id_asc ON invoice_items(invoice_id ASC);
+
+-- CREATE INDEX FOR INVOICE-ITEMS-TREATMENTS
+CREATE INDEX invoice_items_treatment_id_asc ON invoice_items(treatment_id ASC);
+
+-- CREATE INDEX FOR MEDICAL_HISTORIES-TREATMENTS
+CREATE INDEX medical_histories_treatments_treatments_id_asc ON medical_histories_treatments(treatment_id ASC);
+
+-- CREATE INDEX FOR MEDICAL_HISTORIES-TREATMENTS
+CREATE INDEX medical_histories_treatments_medical_histories_id_asc ON medical_histories_treatments(medical_history_id ASC);

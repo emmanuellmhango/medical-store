@@ -49,3 +49,11 @@ CREATE TABLE invoices (
   medical_history_id INT REFERENCES medical_histories(id)
 );
 
+-- CREATE INDEX FOR MEDICAL HISTORIES
+CREATE INDEX medical_histories_patients_id_asc ON medical_histories(patient_id ASC);
+
+-- CREATE INDEX FOR MEDICAL HISTORIES INVOICES
+CREATE INDEX invoices_medical_history_id_asc ON invoices(medical_history_id ASC);
+
+-- CREATE INDEX FOR INVOICE ITEMS INVOICES
+CREATE INDEX invoice_items_invoice_id_asc ON invoice_items(invoice_id ASC);

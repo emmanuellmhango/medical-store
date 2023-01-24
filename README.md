@@ -36,7 +36,7 @@ After you're finished please remove all the comments and instructions!
 
 # 📗 Table of Contents
 
-- [VET CLINIC DATABASE](#vet-clinic-database)
+- [MEDICAL STORE DATABASE](#vet-clinic-database)
   - [Getting Started](#getting-started)
 - [📗 Table of Contents](#-table-of-contents)
 - [📖 \[your\_project\_name\] ](#-your_project_name-)
